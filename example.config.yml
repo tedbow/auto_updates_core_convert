@@ -1,0 +1,3 @@
+contrib_dir: '/my/automatic_updates'
+core_dir: '/my/drupal_core/'
+core_mr_branch: '123-mr'

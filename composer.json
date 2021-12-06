@@ -1,0 +1,12 @@
+{
+    "name": "tedbow/auto_updates_convert",
+    "autoload": {
+        "psr-4": {
+            "Tedbow\\AutoUpdatesConvert\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/yaml": "^5.4",
+        "symfony/filesystem": "^5.4"
+    }
+}
