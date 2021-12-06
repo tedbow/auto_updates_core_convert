@@ -41,4 +41,9 @@ foreach ($replacements as $search => $replace) {
   TheClass::replaceContents($search, $replace);
 }
 
+/**
+ * @todo Commit with the specific commit from contrib.
+ */
+print "\Done. Probably good but you should check before you commit and push.";
+
 
