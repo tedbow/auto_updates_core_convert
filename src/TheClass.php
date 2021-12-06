@@ -116,14 +116,18 @@ class TheClass {
    * @throws \Exception
    */
   protected static function getSettings() {
-    $settings = Yaml::parseFile(__DIR__ . '/../config.yml');
-    $settings_keys = array_keys($settings);
-    $require_settings = ['core_mr_branch', 'contrib_dir', 'core_dir'];
-    $missing_settings = array_diff($require_settings, $settings_keys);
-    if ($missing_settings) {
-      throw new \Exception('Missing settings: ' . print_r($missing_settings,
-          TRUE));
+    static $settings;
+    if (!$settings) {
+      $settings = Yaml::parseFile(__DIR__ . '/../config.yml');
+      $settings_keys = array_keys($settings);
+      $require_settings = ['core_mr_branch', 'contrib_dir', 'core_dir'];
+      $missing_settings = array_diff($require_settings, $settings_keys);
+      if ($missing_settings) {
+        throw new \Exception('Missing settings: ' . print_r($missing_settings,
+            TRUE));
+      }
     }
+
     return $settings;
   }
 
