@@ -25,7 +25,8 @@ $fs->mirror(TheClass::getSetting('contrib_dir'), $core_module_path );
 $removals = [
   'automatic_updates_9_3_shim',
   'drupalci.yml',
-  'README.md'
+  'README.md',
+  '.git',
 ];
 $removals = array_map(function ($path) use ($core_module_path) { return "$core_module_path/$path"; }, $removals);
 $fs->remove($removals);
@@ -41,6 +42,7 @@ foreach ($replacements as $search => $replace) {
   TheClass::replaceContents($search, $replace);
 }
 
+TheClass::makeCommit();
 /**
  * @todo Commit with the specific commit from contrib.
  */

@@ -182,4 +182,13 @@ class TheClass {
     }
   }
 
+  public static function makeCommit() {
+    chdir(self::getSetting('contrib_dir'));
+    self::ensureGitClean();
+    $hash = trim(shell_exec('git rev-parse HEAD'));
+    chdir(self::getSetting('core_dir'));
+    shell_exec('git add core');
+    shell_exec("git commit -m 'https://git.drupalcode.org/project/automatic_updates/-/commit/$hash'");
+  }
+
 }
