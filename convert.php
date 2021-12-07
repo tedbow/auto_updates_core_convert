@@ -38,6 +38,8 @@ $replacements = [
   $old_machine_name => $new_machine_name,
   'AutomaticUpdates' => 'AutoUpdates',
   'Drupal\auto_updates_9_3_shim\ProjectRelease' => 'Drupal\update\ProjectRelease',
+  // auto_updates_9_3_shim here because machine would have already been replaced.
+  "  - drupal:auto_updates_9_3_shim\n" => '',
 ];
 foreach ($replacements as $search => $replace) {
   TheClass::renameFiles($search, $replace);
