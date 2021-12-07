@@ -16,8 +16,11 @@ $fs = new Filesystem();
 
 
 $core_module_path = TheClass::getCoreModulePath();
+$package_manager_core_path = TheClass::getSetting('core_dir') . "/core/modules/package_manager";
 // Remove old module
 $fs->remove($core_module_path);
+$fs->remove($package_manager_core_path);
+
 // Copy the contrib module to core.
 $fs->mirror(TheClass::getSetting('contrib_dir'), $core_module_path );
 
@@ -46,10 +49,17 @@ foreach ($replacements as $search => $replace) {
   TheClass::replaceContents($search, $replace);
 }
 
+$fs->rename("$core_module_path/package_manager", TheClass::getSetting('core_dir') . "/core/modules/package_manager");
+
+TheClass::addWordsToDictionary([
+  'syncer',
+  'syncers'
+]);
+
 TheClass::makeCommit();
 /**
  * @todo Commit with the specific commit from contrib.
  */
-print "\Done. Probably good but you should check before you commit and push.";
+print "\Done. Probably good but you should check before you push.";
 
 

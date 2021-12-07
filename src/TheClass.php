@@ -188,7 +188,23 @@ class TheClass {
     $hash = trim(shell_exec('git rev-parse HEAD'));
     chdir(self::getSetting('core_dir'));
     shell_exec('git add core');
-    shell_exec("git commit -m 'https://git.drupalcode.org/project/automatic_updates/-/commit/$hash'");
+    shell_exec("git commit -m 'Update to commit from contrib 8.x-2.x https://git.drupalcode.org/project/automatic_updates/-/commit/$hash'");
+  }
+
+  public static function addWordsToDictionary(array $new_words) {
+    $dict_file = self::getSetting('core_dir') . '/core/misc/cspell/dictionary.txt';
+    $contents = file_get_contents($dict_file);
+    $words = explode("\n", $contents);
+    $words = array_filter($words);
+    foreach ($new_words as $new_word) {
+      if (array_search($new_word, $words)) {
+        continue;
+      }
+      $words[] = $new_word;
+    }
+    asort($words);
+    file_put_contents($dict_file, implode("\n", $words));
+
   }
 
 }
