@@ -27,6 +27,7 @@ $removals = [
   'drupalci.yml',
   'README.md',
   '.git',
+  'pcre.ini',
 ];
 $removals = array_map(function ($path) use ($core_module_path) { return "$core_module_path/$path"; }, $removals);
 $fs->remove($removals);
