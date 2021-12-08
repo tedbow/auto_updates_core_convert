@@ -207,4 +207,16 @@ class TheClass {
 
   }
 
+  public static function runCoreChecks() {
+    chdir(self::getSetting('core_dir'));
+    $output = NULL;
+    $result = NULL;
+    system(' sh ./core/scripts/dev/commit-code-check.sh --branch 9.4.x', $result);
+    if ($result !== 0) {
+      print "😭commit-code-check.sh failed";
+      exit(1);
+    }
+    print "🎉 commit-code-check.sh passed!";
+  }
+
 }

@@ -55,7 +55,7 @@ TheClass::addWordsToDictionary([
   'syncer',
   'syncers'
 ]);
-
+TheClass::runCoreChecks();
 TheClass::makeCommit();
 /**
  * @todo Commit with the specific commit from contrib.
