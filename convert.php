@@ -31,6 +31,7 @@ $removals = [
   'README.md',
   '.git',
   'pcre.ini',
+  'composer.json',
 ];
 $removals = array_map(function ($path) use ($core_module_path) { return "$core_module_path/$path"; }, $removals);
 $fs->remove($removals);
