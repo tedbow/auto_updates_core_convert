@@ -44,6 +44,8 @@ $replacements = [
   'Drupal\auto_updates_9_3_shim\ProjectRelease' => 'Drupal\update\ProjectRelease',
   // auto_updates_9_3_shim here because machine would have already been replaced.
   "  - drupal:auto_updates_9_3_shim\n" => '',
+  "core_version_requirement: ^9.2" => 'version: VERSION',
+  "core_version_requirement: ^9" => 'version: VERSION',
 ];
 foreach ($replacements as $search => $replace) {
   TheClass::renameFiles($search, $replace);
