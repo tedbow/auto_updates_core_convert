@@ -186,9 +186,10 @@ class TheClass {
     chdir(self::getSetting('contrib_dir'));
     self::ensureGitClean();
     $hash = trim(shell_exec('git rev-parse HEAD'));
+    $message = trim(shell_exec("git show -s --format='%s'"));
     chdir(self::getSetting('core_dir'));
     shell_exec('git add core');
-    shell_exec("git commit -m 'Update to commit from contrib 8.x-2.x https://git.drupalcode.org/project/automatic_updates/-/commit/$hash'");
+    shell_exec("git commit -m 'Contrib: $message - https://git.drupalcode.org/project/automatic_updates/-/commit/$hash'");
   }
 
   public static function addWordsToDictionary(array $new_words) {
