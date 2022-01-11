@@ -26,6 +26,7 @@ $fs->mirror(TheClass::getSetting('contrib_dir'), $core_module_path );
 
 // Remove unneeded
 $removals = [
+  'package_manager/package_manager.install',
   'automatic_updates_9_3_shim',
   'drupalci.yml',
   'README.md',
