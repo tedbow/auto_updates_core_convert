@@ -58,7 +58,8 @@ $fs->rename("$core_module_path/package_manager", TheClass::getSetting('core_dir'
 
 TheClass::addWordsToDictionary([
   'syncer',
-  'syncers'
+  'syncers',
+  'unwritable',
 ]);
 TheClass::runCoreChecks();
 TheClass::makeCommit();
