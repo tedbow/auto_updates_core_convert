@@ -53,6 +53,7 @@ foreach ($replacements as $search => $replace) {
   TheClass::replaceContents($search, $replace);
 }
 
+TheClass::removeLines();
 $fs->rename("$core_module_path/package_manager", TheClass::getSetting('core_dir') . "/core/modules/package_manager");
 
 TheClass::addWordsToDictionary([

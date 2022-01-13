@@ -220,4 +220,42 @@ class TheClass {
     print "🎉 commit-code-check.sh passed!";
   }
 
+  /**
+   * Removes lines from the module based on a starting and ending token
+   * These are lines that are not need in core at all.
+   *
+   * @throws \Exception
+   */
+  public static function removeLines() {
+    $files = static::getDirContents(static::getCoreModulePath(), TRUE);
+    foreach ($files as $file) {
+      $filePath = $file->getRealPath();
+      $contents = file_get_contents($filePath);
+      $lines = explode("\n", $contents);
+      $skip = FALSE;
+      $newLines = [];
+      foreach ($lines as $line) {
+        if (strpos($line, '// BEGIN: DELETE FROM CORE MERGE REQUEST')) {
+          if ($skip) {
+            throw new \Exception("Already found begin");
+          }
+          $skip = TRUE;
+        }
+        if (!$skip) {
+          $newLines[] = $line;
+        }
+        if (strpos($line, '// END: DELETE FROM CORE MERGE REQUEST')) {
+          if (!$skip) {
+            throw new \Exception("Didn't find matching begin");
+          }
+          $skip = false;
+        }
+      }
+      if ($skip) {
+        throw new \Exception("Didn't find ending token");
+      }
+      file_put_contents($filePath, implode("\n", $newLines));
+    }
+  }
+
 }
