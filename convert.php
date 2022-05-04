@@ -28,6 +28,7 @@ $fs->mirror(TheClass::getSetting('contrib_dir'), $core_module_path );
 $removals = [
   'package_manager/package_manager.install',
   'automatic_updates_9_3_shim',
+  'automatic_updates_extensions',
   'drupalci.yml',
   'README.md',
   '.git',
